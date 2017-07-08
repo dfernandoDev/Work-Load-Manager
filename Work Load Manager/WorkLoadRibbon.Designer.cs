@@ -1,4 +1,4 @@
-﻿namespace WorkLoad
+﻿namespace WorkLoadManager
 {
     partial class WorkLoadRibbon : Microsoft.Office.Tools.Ribbon.RibbonBase
     {
@@ -36,7 +36,7 @@
         {
             this.tabWorkLoad = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
-            this.btnRally = this.Factory.CreateRibbonButton();
+            this.btnConnect = this.Factory.CreateRibbonButton();
             this.group2 = this.Factory.CreateRibbonGroup();
             this.tabWorkLoad.SuspendLayout();
             this.group1.SuspendLayout();
@@ -51,18 +51,19 @@
             // 
             // group1
             // 
-            this.group1.Items.Add(this.btnRally);
-            this.group1.Label = "Connect";
+            this.group1.Items.Add(this.btnConnect);
+            this.group1.Label = "Rally";
             this.group1.Name = "group1";
             // 
-            // btnRally
+            // btnConnect
             // 
-            this.btnRally.Label = "Rally";
-            this.btnRally.Name = "btnRally";
-            this.btnRally.OfficeImageId = "HappyFace";
-            this.btnRally.ScreenTip = "Connect to Rally";
-            this.btnRally.ShowImage = true;
-            this.btnRally.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RallyConnect);
+            this.btnConnect.ImageName = "imgRally";
+            this.btnConnect.Label = "Connect";
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.OfficeImageId = "ChartLines";
+            this.btnConnect.ScreenTip = "Connect to Rally";
+            this.btnConnect.ShowImage = true;
+            this.btnConnect.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RallyConnect);
             // 
             // group2
             // 
@@ -86,7 +87,7 @@
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tabWorkLoad;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnRally;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnConnect;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group2;
     }
 

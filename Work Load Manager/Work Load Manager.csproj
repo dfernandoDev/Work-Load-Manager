@@ -24,8 +24,8 @@
     <ProjectGuid>{AD749A63-4EBA-497E-84FE-C8FF65876E2B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <RootNamespace>WorkLoad</RootNamespace>
-    <AssemblyName>Work Load Manager</AssemblyName>
+    <RootNamespace>WorkLoadManager</RootNamespace>
+    <AssemblyName>WorkLoad.Manager</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -172,25 +172,13 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="RallyConstants.cs" />
-    <Compile Include="frmAuthenticate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAuthenticate.Designer.cs">
-      <DependentUpon>frmAuthenticate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="WorkLoadRibbon.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="WorkLoadRibbon.cs" />
     <Compile Include="WorkLoadRibbon.Designer.cs">
       <DependentUpon>WorkLoadRibbon.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="frmAuthenticate.resx">
-      <DependentUpon>frmAuthenticate.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -199,10 +187,12 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="WorkLoadRibbon.resx">
       <DependentUpon>WorkLoadRibbon.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -211,6 +201,7 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
@@ -224,6 +215,18 @@
     </Compile>
     <AppDesigner Include="Properties\" />
     <None Include="WorkLoad_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ca.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\RallyAuthenticator\RallyAuthenticator\RallyAuthenticator.csproj">
+      <Project>{a4a9d956-788c-4d6c-a433-231b0f9ed1fd}</Project>
+      <Name>RallyAuthenticator</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -247,7 +250,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
         <ProjectProperties HostName="Excel" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Excel" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\16.0\Excel\InstallRoot\Path#excel.exe" DebugInfoCommandLine="/x" AddItemTemplatesGuid="{51063C3A-E220-4D12-8922-BDA915ACD783}" />
-        <Host Name="Excel" GeneratedCodeNamespace="WorkLoad" IconIndex="0">
+        <Host Name="Excel" GeneratedCodeNamespace="WorkLoadManager" IconIndex="0">
           <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
         </Host>
       </FlavorProperties>

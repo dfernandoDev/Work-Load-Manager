@@ -1,15 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Office.Tools.Ribbon;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Excel;
-using Excel = Microsoft.Office.Interop.Excel;
+using System.Diagnostics;
 
-
-namespace WorkLoad
+namespace WorkLoadManager
 {
+    public class WindowWrapper : System.Windows.Forms.IWin32Window
+    {
+        public WindowWrapper(IntPtr handle)
+        {
+            _hwnd = handle;
+        }
+
+        public IntPtr Handle
+        {
+            get { return _hwnd; }
+        }
+
+        private IntPtr _hwnd;
+    }
     public partial class WorkLoadRibbon
     {
         private string sessionID;
@@ -17,13 +26,20 @@ namespace WorkLoad
 
         private void RallyConnect(object sender, RibbonControlEventArgs e)
         {
-            frmAuthenticate fm = new frmAuthenticate();
-            fm.ShowDialog();
-            sessionID = fm.SessionID ;
+            RallyAuthenticator.frmAuthenticate fm = new RallyAuthenticator.frmAuthenticate();
+            fm.WebURL = Properties.Settings.Default.Rally_SSO_Url;
 
-            if (sessionID.Length>0)
+            IntPtr hwnd = Process.GetCurrentProcess().MainWindowHandle;
+            IWin32Window win = Control.FromHandle(hwnd);
+            DialogResult result = fm.ShowDialog(win);
+
+            if (result == DialogResult.OK)
             {
                 authenticated = true;
+                sessionID = fm.SessionID;
+
+                Rally.RestApi.RallyRestApi restApi = new Rally.RestApi.RallyRestApi(webServiceVersion: "v2.0");
+                // Rally.RestApi.Auth.ApiAuthManager authMan = new Rally.RestApi.Auth.ApiAuthManager();
 
             }
             /*

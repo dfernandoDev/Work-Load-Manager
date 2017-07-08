@@ -7,7 +7,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
 
-namespace WorkLoad
+namespace WorkLoadManager
 {
     public partial class ThisAddIn
     {
@@ -19,16 +19,6 @@ namespace WorkLoad
         {
         }
 
-        void Application_WorkbookBeforeSave(Microsoft.Office.Interop.Excel.Workbook Wb, bool SaveAsUI, ref bool Cancel)
-        {
-            //Excel.Worksheet activeWorksheet = ((Excel.Worksheet)Application.ActiveSheet);
-            //Excel.Range firstRow = activeWorksheet.get_Range("A1");
-            //firstRow.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftDown);
-            //Excel.Range newFirstRow = activeWorksheet.get_Range("A1");
-            //newFirstRow.Value2 = "This text was added by using code";
-        }
-
-
         #region VSTO generated code
 
         /// <summary>
@@ -39,7 +29,6 @@ namespace WorkLoad
         {
             this.Startup += new System.EventHandler(ThisAddIn_Startup);
             this.Shutdown += new System.EventHandler(ThisAddIn_Shutdown);
-            this.Application.WorkbookBeforeSave += new Microsoft.Office.Interop.Excel.AppEvents_WorkbookBeforeSaveEventHandler(Application_WorkbookBeforeSave);
         }
         
         #endregion
